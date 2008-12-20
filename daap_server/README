@@ -1,0 +1,29 @@
+# Readme file for mt-daapd module
+
+
+This puppet module should basically do just a few things.
+
+1.  Install mt-daapd
+2.  Deliver a configuration file in /etc
+3.  Enable the daemon for startup
+4.  Startup the daemon
+
+
+Your configuration is required for the config file in /etc.  It's an erb and can require lots of variables.  
+Feel free to glance at it to know what variables to use. 
+
+
+
+
+
+Here's my basic example of a manifest using it. 
+
+
+include 'daap_server/*'
+
+node foo inherits default {
+   $daap_servername = "this will show up in iTunes"
+   $mp3_dir = "/my/music/directory"
+   include "daap_server"
+}
+
