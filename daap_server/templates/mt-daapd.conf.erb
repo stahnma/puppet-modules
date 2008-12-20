@@ -22,11 +22,11 @@
 # path is probably /usr/local/share/mt-daapd/admin-root.
 #
 
-<% if has_variable?("web_root") then %>
+<% if has_variable?("web_root") then -%>
 web_root <%= web_root %> 
-<% else %>
+<% else -%>
 web_root	/usr/share/mt-daapd/admin-root
-<% end %>
+<% end -%>
 
 #
 # port (required)
@@ -35,11 +35,11 @@ web_root	/usr/share/mt-daapd/admin-root
 # port, but this is the default iTunes port
 #
 
-<% if has_variable?("port") then %>
+<% if has_variable?("port") then -%>
 port <%= port %> 
-<% else %>
+<% else -%>
 port		3689
-<% end %>
+<% end -%>
 
 #
 # admin_pw (required)
@@ -47,11 +47,11 @@ port		3689
 # This is the password to the administrative pages
 #
 #
-<% if has_variable?("admin_pw") then %>
+<% if has_variable?("admin_pw") then -%>
 admin_pw <%= admin_pw %> 
-<% else %>
+<% else -%>
 admin_pw       mt-daapd
-<% end %>
+<% end -%>
 
 
 #
@@ -63,11 +63,11 @@ admin_pw       mt-daapd
 # exists.  If not, then YOU MUST CREATE THIS DIRECTORY!
 #
 
-<% if has_variable?("db_dir") then %>
+<% if has_variable?("db_dir") then -%>
 db_dir <%= db_dir %> 
-<% else %>
+<% else -%>
 db_dir		/var/cache/mt-daapd
-<% end %>
+<% end -%>
 
 #
 # mp3_dir (required)
@@ -77,11 +77,11 @@ db_dir		/var/cache/mt-daapd
 # in the same physical filesystem.
 #
 
-<% if has_variable?("mp3_dir") then %>
+<% if has_variable?("mp3_dir") then -%>
 mp3_dir <%= mp3_dir %> 
-<% else %>
+<% else -%>
 mp3_dir       /mnt/mp3
-<% end %>
+<% end -%>
 
 #
 # servername (required)
@@ -91,11 +91,11 @@ mp3_dir       /mnt/mp3
 # exported via DAAP.  Also know as "What shows up in iTunes".
 #
 
-<% if has_variable?("servername") then %>
+<% if has_variable?("servername") then -%>
 servername <%= servername %> 
-<% else %>
+<% else -%>
 servername       'mt-daapd server'
-<% end %>
+<% end -%>
 
 #
 # runas (required)
@@ -107,11 +107,11 @@ servername       'mt-daapd server'
 # as root or not.
 #
 
-<% if has_variable?("runas") then %>
+<% if has_variable?("runas") then -%>
 runas <%= runas %> 
-<% else %>
+<% else -%>
 runas	mt-daapd
-<% end %>
+<% end -%>
 
 #
 # playlist (optional)
@@ -126,11 +126,11 @@ runas	mt-daapd
 # below.
 #
 
-<% if has_variable?("playlist") then %>
+<% if has_variable?("playlist") then -%>
 playlist <%= playlist %> 
-<% else %>
+<% else -%>
 playlist	/etc/mt-daapd.playlist
-<% end %>
+<% end -%>
 
 #
 # password (optional)
@@ -140,11 +140,11 @@ playlist	/etc/mt-daapd.playlist
 #
 
 
-<% if has_variable?("password") then %>
+<% if has_variable?("password") then -%>
 password <%= password %> 
-<% else %>
+<% else -%>
 #password	mp3
-<% end %>
+<% end -%>
 
 #
 # extensions (optional)
@@ -159,11 +159,11 @@ password <%= password %>
 #
 #
 
-<% if has_variable?("extensions") then %>
+<% if has_variable?("extensions") then -%>
 extensions <%= extensions %> 
-<% else %>
+<% else -%>
 extensions .mp3,.m4a,.m4p,.ogg,.flac
-<% end %>
+<% end -%>
 
 #
 # logfile (optional)
@@ -177,11 +177,11 @@ extensions .mp3,.m4a,.m4p,.ogg,.flac
 # will vary the amount of logging you get.
 #
 
-<% if has_variable?("logfile") then %>
+<% if has_variable?("logfile") then -%>
 logfile <%= logfile %> 
-<% else %>
+<% else -%>
 logfile /var/log/mt-daapd.log
-<% end %>
+<% end -%>
 
 #
 # art_filename (optional)
@@ -196,11 +196,11 @@ logfile /var/log/mt-daapd.log
 # in iTunes.  Cool, eh? 
 #
 
-<% if has_variable?("art_filename") then %>
+<% if has_variable?("art_filename") then -%>
 art_filename <%= art_filename %> 
-<% else %>
+<% else -%>
 #art_filename _folderOpenImage.jpg
-<% end %>
+<% end -%>
 
 #
 # rescan_interval
@@ -219,11 +219,11 @@ art_filename <%= art_filename %>
 #
 #
 
-<% if has_variable?("rescan_interval") then %>
+<% if has_variable?("rescan_interval") then -%>
 rescan_interval <%= rescan_interval %> 
-<% else %>
+<% else -%>
 #rescan_interval       300
-<% end %>
+<% end -%>
 
 # always_scan 
 #
