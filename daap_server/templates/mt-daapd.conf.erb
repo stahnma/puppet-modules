@@ -91,10 +91,10 @@ mp3_dir       /mnt/mp3
 # exported via DAAP.  Also know as "What shows up in iTunes".
 #
 
-<% if has_variable?("servername") then -%>
-servername <%= servername %> 
+<% if has_variable?(daap_servername) then -%>
+servername <%= daap_servername %> 
 <% else -%>
-servername       'mt-daapd server'
+servername       mt-daapd
 <% end -%>
 
 #
@@ -234,7 +234,11 @@ rescan_interval <%= rescan_interval %>
 # 24x7.  Forcing a scan through the web interface will always work
 # though, even if no users are connected.
 
+<% if has_variable?("always_scan") then -%>
+always_scan <%= always_scan %> 
+<% else -%>
 # always_scan 0
+<% end -%>
 
 # 
 # process_m3u
@@ -250,7 +254,11 @@ rescan_interval <%= rescan_interval %>
 # I'm not sure "unixly" is a word, but you get the idea.
 #
 
+<% if has_variable?("process_m3u") then -%>
+process_m3u <%= process_m3u %> 
+<% else -%>
 # process_m3u 0
+<% end -%>
 
 #
 # scan_type
@@ -278,7 +286,11 @@ rescan_interval <%= rescan_interval %>
 #   the file is indexed.
 # 
 
+<% if has_variable?("scan_type") then -%>
+scan_type <%= scan_type %> 
+<% else -%>
 # scan_type  0
+<% end -%>
 
 #
 # compress
@@ -293,4 +305,8 @@ rescan_interval <%= rescan_interval %>
 # It will eventually default to 1, but currently it defaults to 0.
 #
 
+<% if has_variable?("compress") then -%>
+compress <%= compress %> 
+<% else -%>
 # compress 0
+<% end -%>
