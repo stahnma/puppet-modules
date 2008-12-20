@@ -16,6 +16,16 @@ class daap_server {
         content => template('daap_server/mt-daapd.conf.erb'),
         owner => 'root',
         mode => '640',
-        require => Package['mt-daapd']
+        require => Package['mt-daapd'],
+        notify => Service["mt-daapd"]
     }
+    service { "mt-daapd":
+        ensure => running,
+        enable => true,
+        hasrestart => true,
+        require => [ 
+             File["/etc/mt-daapd.conf"],
+             Package["mt-daapd"],
+        ]
+   }
 }
