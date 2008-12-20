@@ -39,8 +39,13 @@ port		3689
 #
 # This is the password to the administrative pages
 #
+#
+<% if has_variable?("admin_pw") then %>
+admin_pw <%= admin_pw %> 
+<% else %>
+admin_pw       mt-daapd
+<% end %>
 
-admin_pw	<%= adminpw | 'mt-daapd' %>
 
 #
 # db_dir (required)
@@ -61,8 +66,11 @@ db_dir		/var/cache/mt-daapd
 # in the same physical filesystem.
 #
 
-#mp3_dir		/depot/music/sorted
-mp3_dir       <%= mp3dir | "/mnt/mp3" %>
+<% if has_variable?("mp3_dir") then %>
+mp3_dir <%= mp3_dir %> 
+<% else %>
+mp3_dir       /mnt/mp3
+<% end %>
 
 #
 # servername (required)
@@ -72,8 +80,11 @@ mp3_dir       <%= mp3dir | "/mnt/mp3" %>
 # exported via DAAP.  Also know as "What shows up in iTunes".
 #
 
-#servername	stahnkage-music
-servername      <%= servername | "mt-daapd server" %>
+<% if has_variable?("servername") then %>
+servername <%= servername %> 
+<% else %>
+servername       'mt-daapd server'
+<% end %>
 
 #
 # runas (required)
@@ -172,8 +183,11 @@ logfile /var/log/mt-daapd.log
 #
 #
 
-rescan_interval <%= rescan_interval | '300' %>
-#rescan_interval 3000
+<% if has_variable?("rescan_interval") then %>
+rescan_interval <%= rescan_interval %> 
+<% else %>
+#servername       300
+<% end %>
 
 # always_scan 
 #

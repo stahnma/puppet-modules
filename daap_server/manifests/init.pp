@@ -11,7 +11,11 @@ class daap_server {
     package { "mt-daapd":
         ensure => latest
     }
-    #file { "/etc/mock":
-    #    ensure => directory
-    #}
+    file { "/etc/mt-daapd.conf":
+        ensure => present,
+        content => template('daap_server/mt-daapd.conf.erb'),
+        owner => 'root',
+        mode => '640',
+        require => Package['mt-daapd']
+    }
 }
