@@ -1,3 +1,4 @@
 Git repo for all puppet modules I use/write.
 
 
+* daap_server -- A DAAP server that exports your music collection via the Digital Audio Access Protocol as made famous by Apple iTunes.

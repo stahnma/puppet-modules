@@ -1,5 +1,7 @@
 # Readme file for mt-daapd module
 
+daap_server - A DAAP server that exports your music collection via the Digital Audio Access Protocol as made famous by Apple iTunes.
+
 
 This puppet module should basically do just a few things.
 
@@ -11,7 +13,6 @@ This puppet module should basically do just a few things.
 
 Your configuration is required for the config file in /etc.  It's an erb and can require lots of variables.  
 Feel free to glance at it to know what variables to use. 
-
 
 
 
