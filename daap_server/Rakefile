@@ -11,6 +11,10 @@ task :default  => :test do
    sh   "mkdir -p /var/lib/puppet/modules/daap_server/manifests"
    puts "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/manifests"
    sh   "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/manifests"
+#   puts "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/files"
+#   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/files"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/templates"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/templates"
 
 end
 
