@@ -3,7 +3,8 @@
 # Module workflow tool, used mostly during development
 #
 #
-task :default do
+#
+task :default  => :test do
 
   
    puts "mkdir -p /var/lib/puppet/modules/daap_server/manifests"
@@ -12,3 +13,10 @@ task :default do
    sh   "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/manifests"
 
 end
+
+task :test do 
+   puts "puppet --noop --parseonly manifests/init.pp"
+   sh   "puppet --noop --parseonly manifests/init.pp"
+   puts "All OK"
+end
+
