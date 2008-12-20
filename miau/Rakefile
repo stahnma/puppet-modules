@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+#
+# Module workflow tool, used mostly during development
+#
+task :default  => :test do
+  
+   puts "mkdir -p /var/lib/puppet/modules/miau/{manifests,templates,files}"
+   sh   "mkdir -p /var/lib/puppet/modules/miau/{manifests,templates,files}"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/miau/manifests"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/miau/manifests"
+#   puts "install -p -m644 manifests/* /var/lib/puppet/modules/miau/files"
+#   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/miau/files"
+#   puts "install -p -m644 templates/* /var/lib/puppet/modules/miau/templates"
+#   sh   "install -p -m644 templates/* /var/lib/puppet/modules/miau/templates"
+
+end
+
+task :test do 
+   puts "puppet --noop --parseonly manifests/init.pp"
+   sh   "puppet --noop --parseonly manifests/init.pp"
+   puts "All OK"
+end
+
