@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+#
+# Module workflow tool, used mostly during development
+#
+#
+task :default do
+
+  
+   puts "mkdir -p /var/lib/puppet/modules/daap_server/manifests"
+   sh   "mkdir -p /var/lib/puppet/modules/daap_server/manifests"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/manifests"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/daap_server/manifests"
+
+end
