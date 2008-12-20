@@ -10,7 +10,6 @@
 # forums and possibly more.
 #
 
-
 #
 # web_root (required)
 #
@@ -23,7 +22,11 @@
 # path is probably /usr/local/share/mt-daapd/admin-root.
 #
 
+<% if has_variable?("web_root") then %>
+web_root <%= web_root %> 
+<% else %>
 web_root	/usr/share/mt-daapd/admin-root
+<% end %>
 
 #
 # port (required)
@@ -32,7 +35,11 @@ web_root	/usr/share/mt-daapd/admin-root
 # port, but this is the default iTunes port
 #
 
+<% if has_variable?("port") then %>
+port <%= port %> 
+<% else %>
 port		3689
+<% end %>
 
 #
 # admin_pw (required)
@@ -56,7 +63,11 @@ admin_pw       mt-daapd
 # exists.  If not, then YOU MUST CREATE THIS DIRECTORY!
 #
 
+<% if has_variable?("db_dir") then %>
+db_dir <%= db_dir %> 
+<% else %>
 db_dir		/var/cache/mt-daapd
+<% end %>
 
 #
 # mp3_dir (required)
@@ -96,7 +107,11 @@ servername       'mt-daapd server'
 # as root or not.
 #
 
+<% if has_variable?("runas") then %>
+runas <%= runas %> 
+<% else %>
 runas	mt-daapd
+<% end %>
 
 #
 # playlist (optional)
@@ -111,7 +126,11 @@ runas	mt-daapd
 # below.
 #
 
+<% if has_variable?("playlist") then %>
+playlist <%= playlist %> 
+<% else %>
 playlist	/etc/mt-daapd.playlist
+<% end %>
 
 #
 # password (optional)
@@ -120,7 +139,12 @@ playlist	/etc/mt-daapd.playlist
 # i.e. the password that iTunes prompts for
 #
 
+
+<% if has_variable?("password") then %>
+password <%= password %> 
+<% else %>
 #password	mp3
+<% end %>
 
 #
 # extensions (optional)
@@ -135,7 +159,11 @@ playlist	/etc/mt-daapd.playlist
 #
 #
 
+<% if has_variable?("extensions") then %>
+extensions <%= extensions %> 
+<% else %>
 extensions .mp3,.m4a,.m4p,.ogg,.flac
+<% end %>
 
 #
 # logfile (optional)
@@ -149,7 +177,11 @@ extensions .mp3,.m4a,.m4p,.ogg,.flac
 # will vary the amount of logging you get.
 #
 
+<% if has_variable?("logfile") then %>
+logfile <%= logfile %> 
+<% else %>
 logfile /var/log/mt-daapd.log
+<% end %>
 
 #
 # art_filename (optional)
@@ -164,7 +196,11 @@ logfile /var/log/mt-daapd.log
 # in iTunes.  Cool, eh? 
 #
 
+<% if has_variable?("art_filename") then %>
+art_filename <%= art_filename %> 
+<% else %>
 #art_filename _folderOpenImage.jpg
+<% end %>
 
 #
 # rescan_interval
@@ -186,7 +222,7 @@ logfile /var/log/mt-daapd.log
 <% if has_variable?("rescan_interval") then %>
 rescan_interval <%= rescan_interval %> 
 <% else %>
-#servername       300
+#rescan_interval       300
 <% end %>
 
 # always_scan 
