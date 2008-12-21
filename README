@@ -1,4 +1,13 @@
 Git repo for all puppet modules I use/write.
 
 
+Working 
+---------
 * daap_server -- A DAAP server that exports your music collection via the Digital Audio Access Protocol as made famous by Apple iTunes.
+
+
+Under development
+-------------------
+* miau -- An IRC proxy deployment and setup module on a per user basis
+
+
