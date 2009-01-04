@@ -9,5 +9,6 @@ Working
 Under development
 -------------------
 * miau -- An IRC proxy deployment and setup module on a per user basis
+* cobbler -- A module to setup the cobbler build system.  
 
 
