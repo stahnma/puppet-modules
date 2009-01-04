@@ -2,16 +2,18 @@
 #
 # Module workflow tool, used mostly during development
 #
+#
+module_name = 'miau'
 task :default  => :test do
   
-   puts "mkdir -p /var/lib/puppet/modules/miau/{manifests,templates,files}"
-   sh   "mkdir -p /var/lib/puppet/modules/miau/{manifests,templates,files}"
-   puts "install -p -m644 manifests/* /var/lib/puppet/modules/miau/manifests"
-   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/miau/manifests"
-#   puts "install -p -m644 manifests/* /var/lib/puppet/modules/miau/files"
-#   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/miau/files"
-#   puts "install -p -m644 templates/* /var/lib/puppet/modules/miau/templates"
-#   sh   "install -p -m644 templates/* /var/lib/puppet/modules/miau/templates"
+   puts "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
+   sh   "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
+#   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+#   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+#   puts "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+#   sh   "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
 
 end
 
