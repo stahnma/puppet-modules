@@ -1,0 +1,42 @@
+
+NOT WORKING YET
+
+= Purpose = 
+Install and configure my cobbler setup.  My cobbler setup probably isn't all that different than a typical cobbler setup; however, it does have the cobbler www directory in /srv.  The /var/www/cobbler directory is symlinked to that.  This is because I have all sorts of space in /srv. 
+
+IPtables rules are not very tested at all.  I think this is what is required to make cobbler work.
+
+  iptables -A INPUT -p tcp --dport 69 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 25150 -j ACCEPT
+  iptables -A INPUT -p tcp --dport 25151 -j ACCEPT
+
+
+= Default Passwords =
+* The default webui password is cobbler/cobbler
+* The default root password for kickstarted hosts is in /etc/cobbler/settings
+
+= Known Issues =
+* SELinux must be disabled for this to work. 
+
+
+
+Install Cobbler
+ 
+ SELinux must be disabled (because I suck at SELinux)
+
+ Edit /etc/cobbler/settings
+
+ create s symlink for /var/www/cobbler to /srv/cobbler
+
+  install cman
+  service cobblerd start
+  chkconfig cobblerd on
+
+
+configure the web UI (assume an LDAP server or no?)
+edit /etc/cobbler/modules
+
+distribute /etc/cobbler/users.digest
+
