@@ -10,10 +10,10 @@ task :default  => :test do
    sh   "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
    puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
    sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
-   #puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
-   #sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
-   puts "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
-   sh   "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+   #puts "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+   #sh   "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
 
 end
 

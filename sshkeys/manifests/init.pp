@@ -1,6 +1,5 @@
 # Simple module to deploy public ssh key
-#
-class sshkeys::root { 
+# to root user
   file { "/root/.ssh":
        ensure => directory,
        owner => root,
@@ -12,6 +11,5 @@ class sshkeys::root {
        owner => root,
        group => root,
        mode => 400,
-       source => "puppet://$server/files/root/authorized_keys"
+       source => "puppet:///sshkeys/root/authorized_keys"
   }
-}
