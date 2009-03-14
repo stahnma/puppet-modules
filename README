@@ -6,6 +6,7 @@ Working
 * daap_server -- A DAAP server that exports your music collection via the Digital Audio Access Protocol as made famous by Apple iTunes.
 * ntp -- installs and configures the ntp daemon
 * sshkeys -- Deploys a public ssh key for the root user
+* cronjobs -- Deploys my yum update/management cron job
 
 
 Under development
