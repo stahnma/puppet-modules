@@ -3,7 +3,7 @@
 # Module workflow tool, used mostly during development
 #
 #
-module_name = 'ntp'
+module_name = 'sshkeys'
 task :default  => :test do
   
    puts "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
