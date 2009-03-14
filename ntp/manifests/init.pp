@@ -1,10 +1,24 @@
-# Install NTP 
-#
-ntpd
-ntpdate
+# Ensure ntpd is installed and running
 
+  # EL 5 and less have no seperate ntpdate package
+  $ntpPkgs =  $operatingsystem ? {
+      Fedora  => [ 'ntp', 'ntpdate' ],
+      default => [ 'ntp' ]
+  }
+  package { $ntpPkgs: ensure => installed,  } 
+  
+  file { "ntpconf":
+        name => "/etc/ntp.conf",
+        owner => root,
+        group => root,
+        mode => 644,
+        source => "puppet:///ntp/ntp.conf"
+  }
 
-config file in /etc
-
-turn on service
-schedule refreshses
+  service { "ntpd":
+        subscribe => File["ntpconf"],
+        ensure => running,
+        enable => true,
+        hasstatus => true,
+        hasrestart => true,
+  }
