@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+#
+# Module workflow tool, used mostly during development
+#
+#
+module_name = 'ntp'
+task :default  => :test do
+  
+   puts "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
+   sh   "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
+   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
+   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
+   #puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+   #sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
+   puts "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+   sh   "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+
+end
+
+task :dirs do
+  puts "Creating Local Directory Setup"
+  sh "mkdir -p manifests tempaltes files"
+end
+
+task :test do 
+   puts "puppet --noop --parseonly manifests/init.pp"
+   sh   "puppet --noop --parseonly manifests/init.pp"
+   puts "All OK"
+end
+
