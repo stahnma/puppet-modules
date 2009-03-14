@@ -1,0 +1,5 @@
+A very simple module to distribute ssh public keys to users who are already known to exist.
+
+In this case, that's pretty much just root.
+
+

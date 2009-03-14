@@ -2,19 +2,12 @@
 #
 # Module workflow tool, used mostly during development
 #
-#
 module_name = 'sshkeys'
-task :default  => :test do
-  
-   puts "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
-   sh   "mkdir -p /var/lib/puppet/modules/#{module_name}/{manifests,templates,files}"
-   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
-   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/manifests"
-   puts "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
-   sh   "install -p -m644 manifests/* /var/lib/puppet/modules/#{module_name}/files"
-   #puts "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
-   #sh   "install -p -m644 templates/* /var/lib/puppet/modules/#{module_name}/templates"
+module_dir = '/var/lib/puppet/modules/'
 
+task :default  => :test do
+   puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
+   sh "rsync -axm * #{module_dir}#{module_name}"
 end
 
 task :dirs do
@@ -27,4 +20,3 @@ task :test do
    sh   "puppet --noop --parseonly manifests/init.pp"
    puts "All OK"
 end
-
