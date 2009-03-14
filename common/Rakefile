@@ -4,6 +4,7 @@
 #
 module_name = Dir.pwd.split('/')[-1]
 module_dir = '/var/lib/puppet/modules/'
+dirs = [ 'manifests', 'files', 'templates' , 'depends' ] 
 
 task :default  => :test do
    puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
@@ -12,11 +13,21 @@ end
 
 task :dirs do
   puts "Creating Local Directory Setup"
-  sh "mkdir -p manifests templates files; touch manifests/init.pp"
+  d = dirs.join(' ')
+  sh "mkdir -p #{d} ; touch manifests/init.pp"
 end
 
 task :test do 
    puts "puppet --noop --parseonly manifests/init.pp"
    sh   "puppet --noop --parseonly manifests/init.pp"
    puts "All OK"
+end
+
+task :clean do
+   dirs = [ 'manifests', 'files', 'templates' , 'depends' ] 
+   dirs.each do |d| 
+     if Dir["#{d}/*"].empty?
+       Dir.rmdir(d)
+     end
+   end
 end

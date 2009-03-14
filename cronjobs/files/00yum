@@ -1,0 +1,7 @@
+#!/bin/bash
+# This lame little script updates my boxen (cause I don't like
+#  the auto-update features in fedora) .
+# It also shows me all available rpms in /root/all
+
+/usr/bin/yum -y update
+/usr/bin/yum list available > /root/all
