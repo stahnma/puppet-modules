@@ -7,6 +7,8 @@ Working
 * ntp -- installs and configures the ntp daemon
 * sshkeys -- Deploys a public ssh key for the root user
 * cronjobs -- Deploys my yum update/management cron job
+* puppetclient -- Sets up a very basic puppet client
+* resolv -- Very simple setup for my resolv.conf
 
 
 Under development

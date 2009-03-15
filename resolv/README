@@ -1,0 +1,18 @@
+Normal Usage:
+
+  edit /etc/puppet/manifests/site.pp
+-------------
+
+  import "resolv"
+  
+  node whatever { 
+    $ns1='192.168.1.109'
+    $ns2='192.168.1.1'
+    $searchpath = 'stahnkage.com'
+    include "resolver"
+ 
+  }
+
+
+--------------
+This just sets up /etc/resolv.conf with your site variables
