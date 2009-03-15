@@ -1,0 +1,8 @@
+Purpose:  Install the $everyWherePackages to all systems
+        Also provide variables for use in other classes/manifests
+
+<example>
+node willow {
+   package { $serverPkgs: ensure => installed }
+}
+</example>
