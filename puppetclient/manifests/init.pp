@@ -1,11 +1,5 @@
 # Client portions
-# need to distribute /etc/sysconfig/puppet
-# needs to ensure puppetd is chkconfiged on
-# needs to ensure that puppetd is running
-# should check to ensure that puppet is the latest?
-
-  $pserver = "hart.stahnkage.com"
-# should probably use a template to specify the server???
+class puppetclient { 
   service { "puppet":
       ensure => true,
       enable => true,
@@ -24,3 +18,4 @@
     subscribe => File["/etc/sysconfig/puppet"],
     refreshonly => true
   }
+}

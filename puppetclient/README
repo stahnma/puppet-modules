@@ -1,0 +1,16 @@
+Normal Usage:
+
+  edit /etc/puppet/manifests/site.pp
+-------------
+
+  import "puppetclient"
+  
+  node whatever { 
+    $pserver = 'puppetmaster.example.com'
+    include 'puppetclient'
+ 
+  }
+
+
+--------------
+This just sets up /etc/sysconfig/puppet and refreshes the puppet daemon
