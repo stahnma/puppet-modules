@@ -3,6 +3,10 @@
 # Module workflow tool, used mostly during development
 #
 module_name = Dir.pwd.split('/')[-1]
+if module_name == "common"
+  puts "Don't rake in the common directory."
+  exit 1
+end
 module_dir = '/var/lib/puppet/modules/'
 dirs = [ 'manifests', 'files', 'templates' , 'depends' ] 
 
