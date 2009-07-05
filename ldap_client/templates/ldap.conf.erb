@@ -1,0 +1,32 @@
+#
+# LDAP Defaults
+#
+
+# See ldap.conf(5) for details
+# This file should be world readable but not world writable.
+
+<% if has_variable?("base") then -%>
+BASE <%= base %>
+<% else -%>
+#BASE	dc=example,dc=com
+<% end -%>
+<% if has_variable?("uri") then -%>
+URI <%= uri %>
+<% else -%>
+#URI	ldap://ldap.example.com
+<% end -%>
+<% if has_variable?("sizelimit") then -%>
+SIZELIMIT <%= sizelimit %>
+<% else -%>
+#SIZELIMIT	12
+<% end -%>
+<% if has_variable?("timelimit") then -%>
+TIMELIMIT <%= timelimit %>
+<% else -%>
+#TIMELIMIT	15
+<% end -%>
+<% if has_variable?("deref") then -%>
+DEREF <%= deref %>
+<% else -%>
+#DEREF		never
+<% end -%>
