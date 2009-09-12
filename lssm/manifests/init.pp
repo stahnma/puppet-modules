@@ -1,4 +1,5 @@
 # Class: applications:lssm
+# Michael Stahnke (c) 2009
 #
 # Parameters:
 #   None
@@ -15,9 +16,11 @@
 #
 # Sample Usage:
 # 
+#  include 'applications::lssm'
+#
+#
 class applications::lssm {
-  $lssmPkgs = [ 'lssm' ] 
-  package { $lssmPkgs: ensure => installed }
+  package { "lssm" : ensure => installed }
  
   file {"configuration.yaml":
     path => "/etc/lssm/configuration.yaml",
@@ -25,30 +28,48 @@ class applications::lssm {
     mode   => "0644",
     owner  => "root",
     group  => "root",
+    # Real Deployment
     source => "puppet:///lssm/configuration.yaml",
-    require => Package[ $lssmPkgs ]
+    # For local testing
+    #source => "/home/stahnma/puppet-modules/lssm/files/configuration.yaml",
+    require => Package[ 'lssm' ]
   }
 
   file {"lssm-apache.conf":
-    path => "/etc/apache2/conf.d/lssm-apache.conf",
+    path => $operatingsystem ? {
+      debian =>  "/etc/apache2/conf.d/lssm-apache.conf",
+      ubuntu =>  "/etc/apache2/conf.d/lssm-apache.conf",
+      fedora =>  "/etc/http/conf.d/lssm-apache.conf",
+      RedHat =>  "/etc/http/conf.d/lssm-apache.conf",
+      CentOS =>  "/etc/http/conf.d/lssm-apache.conf",
+      default =>  "/etc/http/conf.d/lssm-apache.conf",
+    },
     ensure => file,
     mode =>   "0644",
     owner  => "root",
     group  => "root",
+    # Real Deployment
     source => "puppet:///lssm/lssm-apache.conf",
+    # For local testing
+    #source => "/home/stahnma/puppet-modules/lssm/files/lssm-apache.conf",
     require => File[ "configuration.yaml" ],
   }
   
-  package { "apache2":
-        ensure => present
-  }
+  package { "apache2": ensure => present }
 
-  service { "apache2":
+  service { "apache":
+    name => $operatingsystem ? {
+      debian =>  "apache2",
+      ubuntu =>  "apache2",
+      fedora =>  "httpd",
+      RedHat =>  "httpd",
+      CentOS =>  "httpd",
+      default =>  "httpd",
+    },
     ensure => running,
     enable => true,
     hasstatus => true,
-    status => "/etc/init.d/apache2/status",
+    status => "/etc/init.d/$name/status",
     require => Package['apache2']
   } 
- 
 }
