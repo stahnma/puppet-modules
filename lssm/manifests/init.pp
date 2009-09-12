@@ -32,7 +32,7 @@ class applications::lssm {
     source => "puppet:///lssm/configuration.yaml",
     # For local testing
     #source => "/home/stahnma/puppet-modules/lssm/files/configuration.yaml",
-    require => Package[ 'lssm' ]
+    require => Package[ "lssm" ]
   }
 
   file {"lssm-apache.conf":
@@ -69,7 +69,7 @@ class applications::lssm {
     ensure => running,
     enable => true,
     hasstatus => true,
-    status => "/etc/init.d/$name/status",
-    require => Package['apache']
+    status => "/etc/init.d/$name status",
+    require => Package["apache"]
   } 
 }
