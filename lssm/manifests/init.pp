@@ -8,8 +8,8 @@
 #  Install the lssm package which requires Apache. 
 #  Deploy a good configuration for lssm
 #  Configure the Apache server for a URI
-#  Restart Apache2
-#  Ensure Apache2 starts on boot
+#  Restart Apache
+#  Ensure Apache starts on boot
 #
 # Requires:
 #  - Package["lssm"]
@@ -70,6 +70,6 @@ class applications::lssm {
     enable => true,
     hasstatus => true,
     status => "/etc/init.d/$name/status",
-    require => Package['apache2']
+    require => Package['apache']
   } 
 }
