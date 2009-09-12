@@ -1,0 +1,49 @@
+Site: WebSages.com
+# Place logo in styles
+Style: style
+Favicon: favicon.ico
+Logo: logo.png
+AltLogo: WebSages Account Management
+LDAPInfo:
+  Host:  freyr.websages.com
+  BaseDN: dc=websages,dc=com
+  # For password resets and such, this is required
+  BindDN: uid=pwadmin,ou=people,dc=websages,dc=com
+  BindPW: 37963990a5b2e6ad123271cfb2cc9467bbdc0413
+
+# Note that you must modify ACIs in your LDAP directory to ensure
+#  users have self-write for any attribute in this list
+UserWritableAttrs:
+  Mail: mail
+  Mobile: mobile
+  Pager: pager
+
+# The following Attributes will show up as 'grayed out' when
+# a user is managing their account.  
+ReadOnlyAttrs:
+  Login: uid
+
+#The following information is used for Password Reset Emails
+PWReset:
+  # Time a reset session is kept alive (in hours)
+  Timeout: 4
+  # Who is the email from
+  FromAlias: WebSages.com Account Admin
+  FromAddress: noreply@websages.com
+
+UserSetup:
+  AltSiteNames:
+    - wcyd.org
+    - jameswhite.org
+  ExampleHostname: fapestniegd
+  DefaultGroupID: 100
+  LoginShell: /bin/bash
+  HomePrefix: /home
+  ObjectClasses:
+    - top
+    - person
+    - organizationalPerson
+    - inetorgperson
+    - posixAccount
+    - shadowAccount
+  AccountOU: ou=people

@@ -22,7 +22,6 @@ task :dirs do
 end
 
 task :test do 
-   puts "puppet --noop --parseonly manifests/init.pp"
    sh   "puppet --noop --parseonly manifests/init.pp"
    puts "All OK"
 end
