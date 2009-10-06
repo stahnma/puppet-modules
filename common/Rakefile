@@ -22,8 +22,9 @@ end
 
 moddir = []
 module_dir = ""
-moddir.push(findModulePath)
+# Push local module directory on stack first
 moddir.push(File.expand_path(File.dirname('../..')))
+#moddir.push(findModulePath)
 moddir.each do |mod|
   module_dir += "--modulepath=#{mod} "
 end
@@ -45,12 +46,14 @@ end
 
 desc "Run puppet in noop mode and check for syntax errors."
 task :validate do
-   sh   "puppet --noop --parseonly manifests/init.pp"
+   Dir['manifests/*'].each do |path|
+     sh   "puppet --noop --parseonly #{path}"
+   end
 end
 
-desc "Run puppet locally to test the current module using the test/test.pp file."
+desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
-   sh   "puppet #{module_dir}  test/test.pp"
+   sh   "puppet #{module_dir}  tests/test.pp"
 end
 
 desc "Clean up cruft and remove generated documentation."
@@ -63,7 +66,7 @@ task :clean do
    Dir['doc/*'].each do |file|
      File.delete(file)
    end
-   Dir.rmdir('doc')
+   Dir.rmdir('doc') if File.exists?('doc') 
 end
 
 desc "Generate puppetdoc for manifests in the manifests directory."
