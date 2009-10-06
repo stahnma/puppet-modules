@@ -3,38 +3,74 @@
 # Module workflow tool, used mostly during development
 #
 module_name = Dir.pwd.split('/')[-1]
+
 if module_name == "common"
   puts "Don't rake in the common directory."
   exit 1
 end
-module_dir = '/var/lib/puppet/modules/'
-dirs = [ 'manifests', 'files', 'templates' , 'depends', 'test' ] 
 
-"The Default Task"
-task :default  => :test do
-   puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
-   sh "rsync -axm * #{module_dir}#{module_name}"
+
+def findModulePath()
+  f = File.open('/etc/puppet/puppet.conf')
+  f.each  do |line|
+    #split everything based on a comment
+    token = line.split('#')
+    # given only string context before a '#', find module path
+    return token[0].split('=')[1].strip if token[0] =~ /modulepath/
+  end
 end
 
+moddir = []
+module_dir = ""
+moddir.push(findModulePath)
+moddir.push(File.expand_path(File.dirname('../..')))
+moddir.each do |mod|
+  module_dir += "--modulepath=#{mod} "
+end
+dirs = [ 'manifests', 'files', 'templates' , 'depends', 'tests', 'doc' ] 
+
+
+desc "The default task, which currently just calls test."
+task :default  => :test do
+   #puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
+   #sh "rsync -axm * #{module_dir}#{module_name}"
+end
+
+desc "Create the directory structure for a basic module."
 task :dirs do
   puts "Creating Local Directory Setup"
   d = dirs.join(' ')
-  sh "mkdir -p #{d} ; touch manifests/init.pp"
+  sh "mkdir -p #{d} ; touch manifests/init.pp; touch tests/test.pp"
 end
 
+desc "Run puppet in noop mode and check for syntax errors."
 task :validate do
    sh   "puppet --noop --parseonly manifests/init.pp"
 end
 
+desc "Run puppet locally to test the current module using the test/test.pp file."
 task :test => :validate do 
-   sh   "puppet --modulepath=. --modulepath=#{module_dir}  test/test.pp"
+   sh   "puppet #{module_dir}  test/test.pp"
 end
 
+desc "Clean up cruft and remove generated documentation."
 task :clean do
-   dirs = [ 'manifests', 'files', 'templates' , 'depends', 'test' ] 
    dirs.each do |d| 
      if File.exists?(d) and Dir["#{d}/*"].empty?
        Dir.rmdir(d)
      end
    end
+   Dir['doc/*'].each do |file|
+     File.delete(file)
+   end
+   Dir.rmdir('doc')
+end
+
+desc "Generate puppetdoc for manifests in the manifests directory."
+task :doc do
+  FileUtils.mkdir_p('doc')
+  Dir['manifests/*'].each do |path|
+    fname = path.chomp(File.extname(path)).gsub('manifests/', '')
+    sh "puppetdoc #{path} > doc/#{module_name}_#{fname}.txt"
+  end
 end
