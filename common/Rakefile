@@ -24,17 +24,23 @@ moddir = []
 module_dir = ""
 # Push local module directory on stack first
 moddir.push(File.expand_path(File.dirname('../..')))
-#moddir.push(findModulePath)
+moddir.push(findModulePath)
+module_dir += "--modulepath=" if moddir.size() > 1
 moddir.each do |mod|
-  module_dir += "--modulepath=#{mod} "
+  module_dir += "#{mod}:"
 end
-dirs = [ 'manifests', 'files', 'templates' , 'depends', 'tests', 'doc' ] 
+module_dir.chomp!(':')
+dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc' ] 
 
 
 desc "The default task, which currently just calls test."
 task :default  => :test do
    #puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
    #sh "rsync -axm * #{module_dir}#{module_name}"
+end
+
+desc "Creates the setup and directory structure"
+task :setup => :dirs do
 end
 
 desc "Create the directory structure for a basic module."
@@ -76,4 +82,24 @@ task :doc do
     fname = path.chomp(File.extname(path)).gsub('manifests/', '')
     sh "puppetdoc #{path} > doc/#{module_name}_#{fname}.txt"
   end
+end
+
+desc "Create a module RPM"
+task :rpm do 
+  puts "I didn't do this part yet."
+end
+
+desc "Create a SRPM"
+task :srpm do
+  puts "I didn't do this part yet."
+end
+
+desc "Create a tarball for distribution"
+task :tarball do
+  puts "I didn't do this part yet."
+end
+
+desc "Create a deb package for distribution"
+task :deb do
+  puts "I didn't do this part yet."
 end
