@@ -8,8 +8,9 @@ if module_name == "common"
   exit 1
 end
 module_dir = '/var/lib/puppet/modules/'
-dirs = [ 'manifests', 'files', 'templates' , 'depends' ] 
+dirs = [ 'manifests', 'files', 'templates' , 'depends', 'test' ] 
 
+"The Default Task"
 task :default  => :test do
    puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
    sh "rsync -axm * #{module_dir}#{module_name}"
@@ -21,13 +22,16 @@ task :dirs do
   sh "mkdir -p #{d} ; touch manifests/init.pp"
 end
 
-task :test do 
+task :validate do
    sh   "puppet --noop --parseonly manifests/init.pp"
-   puts "All OK"
+end
+
+task :test => :validate do 
+   sh   "puppet --modulepath=. --modulepath=#{module_dir}  test/test.pp"
 end
 
 task :clean do
-   dirs = [ 'manifests', 'files', 'templates' , 'depends' ] 
+   dirs = [ 'manifests', 'files', 'templates' , 'depends', 'test' ] 
    dirs.each do |d| 
      if File.exists?(d) and Dir["#{d}/*"].empty?
        Dir.rmdir(d)
