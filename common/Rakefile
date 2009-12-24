@@ -17,6 +17,7 @@ def findModulePath()
     token = line.split('#')
     # given only string context before a '#', find module path
     return token[0].split('=')[1].strip if token[0] =~ /modulepath/
+    return nil
   end
 end
 
@@ -24,6 +25,7 @@ moddir = []
 module_dir = ""
 # Push local module directory on stack first
 moddir.push(File.expand_path(File.dirname('../..')))
+moddir.push(findModulePath)
 moddir.push(findModulePath)
 module_dir += "--modulepath=" if moddir.size() > 1
 moddir.each do |mod|
