@@ -1,5 +1,6 @@
 # Install cronjobs
-
+class cronjobs
+{
 # Should probably ensure this is a redhat/fedora/centos based system
 
   file { "cron-yum":
@@ -7,6 +8,8 @@
     owner => root, 
     group => root, 
     mode => 755,
-    require => Package['crontabs'], 
     source => "puppet:///cronjobs/00yum"
   }
+
+  
+}
