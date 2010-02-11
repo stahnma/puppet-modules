@@ -9,7 +9,6 @@ if module_name == "common"
   exit 1
 end
 
-
 def findModulePath()
   f = File.open('/etc/puppet/puppet.conf')
   f.each  do |line|
@@ -17,7 +16,7 @@ def findModulePath()
     token = line.split('#')
     # given only string context before a '#', find module path
     return token[0].split('=')[1].strip if token[0] =~ /modulepath/
-    return nil
+    return ""
   end
 end
 
@@ -26,14 +25,12 @@ module_dir = ""
 # Push local module directory on stack first
 moddir.push(File.expand_path(File.dirname('../..')))
 moddir.push(findModulePath)
-moddir.push(findModulePath)
 module_dir += "--modulepath=" if moddir.size() > 1
 moddir.each do |mod|
   module_dir += "#{mod}:"
 end
 module_dir.chomp!(':')
 dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc' ] 
-
 
 desc "The default task, which currently just calls test."
 task :default  => :test do
@@ -49,12 +46,13 @@ desc "Create the directory structure for a basic module."
 task :dirs do
   puts "Creating Local Directory Setup"
   d = dirs.join(' ')
-  sh "mkdir -p #{d} ; touch manifests/init.pp; touch tests/test.pp"
+  sh "mkdir -p #{d} ; touch manifests/init.pp tests/do.pp tests/undo.pp"
+
 end
 
 desc "Run puppet in noop mode and check for syntax errors."
 task :validate do
-   Dir['manifests/*'].each do |path|
+   Dir['manifests/**/*.pp'].each do |path|
      sh   "puppet --noop --parseonly #{path}"
    end
 end
@@ -62,6 +60,14 @@ end
 desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
    sh   "puppet #{module_dir}  tests/test.pp"
+end
+
+task :do => :validate do
+   sh "puppet #{module_dir} --verbose tests/do.pp"
+end
+
+task :undo => :validate do
+   sh "puppet #{module_dir} --verbose tests/undo.pp"
 end
 
 desc "Clean up cruft and remove generated documentation."
