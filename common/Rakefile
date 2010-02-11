@@ -19,7 +19,6 @@ def findModulePath()
     return ""
   end
 end
-
 moddir = []
 module_dir = ""
 # Push local module directory on stack first
@@ -30,7 +29,8 @@ moddir.each do |mod|
   module_dir += "#{mod}:"
 end
 module_dir.chomp!(':')
-dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc' ] 
+ENV['FACTERLIB']="#{moduledir}/#{module_name}/lib"
+dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc', 'lib' ] 
 
 desc "The default task, which currently just calls test."
 task :default  => :test do
@@ -59,7 +59,7 @@ end
 
 desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
-   sh   "puppet #{module_dir}  tests/test.pp"
+   sh   "puppet #{module_dir}  --verbose tests/test.pp"
 end
 
 task :do => :validate do
