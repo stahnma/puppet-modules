@@ -29,7 +29,7 @@ moddir.each do |mod|
   module_dir += "#{mod}:"
 end
 module_dir.chomp!(':')
-ENV['FACTERLIB']="#{moduledir}/#{module_name}/lib"
+ENV['FACTERLIB']="#{module_dir}/#{module_name}/lib"
 dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc', 'lib' ] 
 
 desc "The default task, which currently just calls test."
