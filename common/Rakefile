@@ -60,7 +60,7 @@ end
 desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
    puts "FACTERLIB=#{ENV['FACTERLIB']}"
-   sh   "puppet #{module_dir}  --verbose tests/test.pp"
+   sh   "puppet #{module_dir} --verbose tests/test.pp"
 end
 
 task :do => :validate do
