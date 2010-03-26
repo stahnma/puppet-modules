@@ -1,5 +1,8 @@
 # Ensure ntpd is installed and running
 
+class ntp
+{
+
   # EL 5 and less have no seperate ntpdate package
   $ntpPkgs =  $operatingsystem ? {
       Fedora  => [ 'ntp', 'ntpdate' ],
@@ -22,3 +25,4 @@
         hasstatus => true,
         hasrestart => true,
   }
+}

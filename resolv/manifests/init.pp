@@ -1,6 +1,6 @@
 # Setup a very simple /etc/resolv.conf
 
-class resolver { 
+class resolv { 
   file { "/etc/resolv.conf":
     owner => root,
     group => root,
