@@ -78,10 +78,16 @@ task :clean do
        Dir.rmdir(d)
      end
    end
+
    Dir['doc/*'].each do |file|
      File.delete(file)
    end
    Dir.rmdir('doc') if File.exists?('doc') 
+
+   Dir['graph/*'].each do |file|
+     File.delete(file)
+   end
+   Dir.rmdir('graph') if File.exists?('graph') 
 end
 
 desc "Generate puppetdoc for manifests in the manifests directory."
@@ -111,4 +117,19 @@ end
 desc "Create a deb package for distribution"
 task :deb do
   puts "I didn't do this part yet."
+end
+
+desc "Generate the graph --> requires graphviz"
+task :graph do 
+  FileUtils.mkdir_p('graph')
+  sh "puppet  --noop #{module_dir} --graph --graphdir=graph  tests/test.pp"
+  Dir['graph/*'].each do |infile|
+    fname = infile.chomp(File.extname(infile)).gsub('graph/', '')
+    sh "dot -Tpng #{infile} >  graph/#{fname}.png"
+  end
+end
+
+desc "Visualize Graph --> Requires firefox"
+task :showgraph do 
+  sh "firefox graph/resources.png"
 end
