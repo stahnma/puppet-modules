@@ -130,6 +130,6 @@ task :graph do
 end
 
 desc "Visualize Graph --> Requires firefox"
-task :showgraph do 
+task :showgraph => :graph do 
   sh "firefox graph/resources.png"
 end
