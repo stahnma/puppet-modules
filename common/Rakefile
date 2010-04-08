@@ -2,8 +2,8 @@
 #
 # Module workflow tool, used mostly during development
 #
-module_name = Dir.pwd.split('/')[-1]
 
+module_name = Dir.pwd.split('/')[-1]
 if module_name == "common"
   puts "Don't rake in the common directory."
   exit 1
@@ -19,6 +19,7 @@ def findModulePath()
     return ""
   end
 end
+
 moddir = []
 module_dir = ""
 # Push local module directory on stack first
@@ -34,19 +35,13 @@ dirs = [ 'manifests', 'files', 'templates' , 'tests', 'doc', 'lib' ]
 
 desc "The default task, which currently just calls test."
 task :default  => :test do
-   #puts "rsync -axm --exclude=Rakefile * #{module_dir}#{module_name}"
-   #sh "rsync -axm * #{module_dir}#{module_name}"
-end
-
-desc "Creates the setup and directory structure"
-task :setup => :dirs do
 end
 
 desc "Create the directory structure for a basic module."
 task :dirs do
   puts "Creating Local Directory Setup"
   d = dirs.join(' ')
-  sh "mkdir -p #{d} ; touch manifests/init.pp tests/do.pp tests/undo.pp"
+  sh "mkdir -p #{d} ; touch manifests/init.pp tests/test.pp"
 
 end
 
@@ -59,7 +54,7 @@ end
 
 desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
-   puts "FACTERLIB=#{ENV['FACTERLIB']}"
+  #puts "FACTERLIB=#{ENV['FACTERLIB']}"
    sh   "puppet #{module_dir} --verbose tests/test.pp"
 end
 
@@ -99,28 +94,8 @@ task :doc do
   end
 end
 
-desc "Create a module RPM"
-task :rpm do 
-  puts "I didn't do this part yet."
-end
-
-desc "Create a SRPM"
-task :srpm do
-  puts "I didn't do this part yet."
-end
-
-desc "Create a tarball for distribution"
-task :tarball do
-  puts "I didn't do this part yet."
-end
-
-desc "Create a deb package for distribution"
-task :deb do
-  puts "I didn't do this part yet."
-end
-
-desc "Generate the graph --> requires graphviz"
-task :graph do 
+desc "Generate the graph --> requires graphviz and may only work on Linux"
+task :graph => :validate do 
   FileUtils.mkdir_p('graph')
   sh "puppet  --noop #{module_dir} --graph --graphdir=graph  tests/test.pp"
   Dir['graph/*'].each do |infile|
@@ -129,7 +104,7 @@ task :graph do
   end
 end
 
-desc "Visualize Graph --> Requires firefox"
+desc "Visualize Graph --> Requires firefox and may only work on Linux"
 task :showgraph => :graph do 
   sh "firefox graph/resources.png"
 end
