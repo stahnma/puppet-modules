@@ -1,4 +1,4 @@
-
+# using http://www.shakthimaan.com/installs/gitosis.html as guide
 class gitosis {
   include ::git
 
