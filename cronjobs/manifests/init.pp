@@ -8,7 +8,7 @@ class cronjobs
     owner => root, 
     group => root, 
     mode => 755,
-    source => "puppet:///cronjobs/00yum"
+    source => "puppet:///modules/cronjobs/00yum"
   }
 
   
