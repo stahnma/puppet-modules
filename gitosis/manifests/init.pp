@@ -32,7 +32,7 @@ class gitosis {
     path =>  "/bin:/usr/bin:/sbin:/usr/sbin",
     command => "env -i gitosis-init < /tmp/id_dsa.pub",
     require => [ File['gitosis-seed'], File['/srv/gitosis'] ] ,
-    unless => " test -f /srv/gitosis/repositoriese ",
+    unless => " test -f /srv/gitosis/repositories",
     logoutput => "on_failure",
     user => 'gitosis',
   } 
