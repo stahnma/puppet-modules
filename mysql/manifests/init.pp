@@ -7,7 +7,7 @@
 class mysql{ 
   $family = $operatingsystem? {
       debian => "debian",
-      fedora => "fedora",
+      fedora => "rhel",
       default => "rhel",
     }
    include "mysql::$family"

@@ -15,7 +15,7 @@ class ntp
         owner => root,
         group => root,
         mode => 644,
-        source => "puppet:///ntp/ntp.conf"
+        source => "puppet:///modules/ntp/ntp.conf"
   }
 
   service { "ntpd":
