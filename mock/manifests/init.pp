@@ -16,6 +16,11 @@ class mock {
   @group { "mock": 
     ensure => present
   }
+
+  @group { "stahnma":
+    ensure => present, 
+    gid => 13802,
+  }
   
-  realize(User[stahnma], Group[mock])
+  realize(User[stahnma], Group[mock], Group[stahnma])
 }
