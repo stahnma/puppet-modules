@@ -26,6 +26,6 @@ class sshkeys::root {
        owner => root,
        group => root,
        mode => 400,
-       source => "puppet:///sshkeys/root/authorized_keys"
+       source => "puppet://modules/sshkeys/root/authorized_keys"
   }
 }
