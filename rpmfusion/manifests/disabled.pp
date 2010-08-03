@@ -1,7 +1,7 @@
 # Disable rpmfusion
 
 class rpmfusion::disabled {
-  $fusions = [ 'rpm-fusion-free', 'rpm-fusion-nonfree' ] 
+  $fusions = [ 'rpmfusion-free-release', 'rpmfusion-nonfree-release' ] 
   package { $fusions: 
     ensure => absent,
   }
