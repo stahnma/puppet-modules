@@ -76,4 +76,47 @@ class rpmfusion::free {
     descr => 'RPM Fusion for Fedora $releasever - Free - Test Updates Source',
     mirrorlist => 'http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-testing-source-$releasever&arch=$basearch'
   }
+
+
+  file { 'free-key':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    ensure => present,
+    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    owner => root,
+    group => root,
+    mode => 644,
+  } 
+
+  file { 'RPM-GPG-KEY-rpmfusion-free-fedora':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora",
+    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    require => File['free-key']
+  }
+
+  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-3-i386':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-i386",
+    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    require => File['free-key']
+  }
+
+  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc",
+    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    require => File['free-key']
+  }
+
+  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc64':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc64",
+    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    require => File['free-key']
+  }
+
+  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-x86_64':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-x86_64",
+    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    require => File['free-key']
+  }
+
+
+  
 }
