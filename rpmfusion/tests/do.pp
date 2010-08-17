@@ -1,2 +1,3 @@
 include rpmfusion::enabled
-#include rpmfusion::yum
+#include rpmfusion::free
+
