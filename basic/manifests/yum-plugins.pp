@@ -6,4 +6,7 @@ class basic::yum-plugins{
   package { "yum-presto":
     ensure => $inst,
   }
+  package { "yum-utils": 
+    ensure => installed, 
+  }
 }

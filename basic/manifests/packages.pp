@@ -10,6 +10,10 @@ class basic::packages {
   package { "bind-utils":
     ensure => installed,
   }
+ 
+  package { "keychain": 
+    ensure => installed,
+  }
 
   # probably things like network manager, bluetooth, wireless tools, etc
   $pkgs_to_remove_on_servers = [ wpa_supplicant ] 
