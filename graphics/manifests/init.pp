@@ -15,7 +15,7 @@
 
 class graphics
 { 
-  $pkg = [ 'rdesktop', 'firefox', 'konversation', 'pidgin', 'amarok', 'gimp', 'control-center-extra', 'liberation-mono-fonts', 'gedit'  ] 
+  $pkg = [ 'rdesktop', 'firefox', 'konversation', 'pidgin', 'amarok', 'gimp', 'control-center-extra', 'liberation-mono-fonts', 'gedit', 'pidgin-otr', 'gnu-free-mono-fonts', 'xine-lib-extras-freeworld'  ] 
   package { $pkg: 
     ensure => installed,
   }
