@@ -80,4 +80,45 @@ class rpmfusion::nonfree {
     descr => 'RPM Fusion for Fedora $releasever - Nonfree - Test Updates Source',
     mirrorlist => 'http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-testing-source-$releasever&arch=$basearch'
   }
+
+ 
+  file { 'nonfree-key':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    ensure => present,
+    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    owner => root,
+    group => root,
+    mode => 644,
+  } 
+
+  file { 'RPM-GPG-KEY-rpmfusion-nonfree-fedora':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    require => File['nonfree-key']
+  }
+
+  file { 'RPM-GPG-KEY-rpmfusion-nonfree-fedora-3-i386':
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-i386",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    require => File['nonfree-key']
+  }
+
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    require => File['nonfree-key']
+  }
+
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc64",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    require => File['nonfree-key']
+  }
+
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-x86_64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-x86_64",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    require => File['nonfree-key']
+  }
+
 }

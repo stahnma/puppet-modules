@@ -79,9 +79,9 @@ class rpmfusion::free {
 
 
   file { 'free-key':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     ensure => present,
-    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     owner => root,
     group => root,
     mode => 644,
@@ -89,31 +89,31 @@ class rpmfusion::free {
 
   file { 'RPM-GPG-KEY-rpmfusion-free-fedora':
     path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora",
-    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    ensure => "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     require => File['free-key']
   }
 
   file { 'RPM-GPG-KEY-rpmfusion-free-fedora-3-i386':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-i386",
-    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-i386",
+    ensure => "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     require => File['free-key']
   }
 
-  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc",
-    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+  file { "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-ppc":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-ppc",
+    ensure => "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     require => File['free-key']
   }
 
-  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc64':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-ppc64",
-    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+  file { "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-ppc64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-ppc64",
+    ensure => "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     require => File['free-key']
   }
 
-  file { 'RPM-GPG-KEY-rpmfusion-free-fedora-13-x86_64':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-x86_64",
-    ensure => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-13-primary",
+  file { "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-x86_64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-x86_64",
+    ensure => "RPM-GPG-KEY-rpmfusion-free-fedora-${operatingsystemrelease}-primary",
     require => File['free-key']
   }
 
