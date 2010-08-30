@@ -19,6 +19,10 @@ class basic::packages {
     ensure => installed,
   }
 
+  package { "strace": 
+    ensure => installed,
+  }
+
   # probably things like network manager, bluetooth, wireless tools, etc
   $pkgs_to_remove_on_servers = [ wpa_supplicant ] 
 }
