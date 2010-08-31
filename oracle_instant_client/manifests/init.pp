@@ -14,6 +14,7 @@ class oracle_instant_client {
   # Create a directory to hold configuration
   file { "/etc/oracle": 
     ensure => directory,
+    require => Package['oracle-instantclient'],
   }
 
   # put the right things in ld.so.conf.d
@@ -31,12 +32,14 @@ class oracle_instant_client {
   file { "/etc/ld.so.conf.d/oracle-instant.conf":
     ensure => present,
     content => $cont,
-    notify => Exec['/sbin/ldconfig']
+    notify => Exec['/sbin/ldconfig'],
+    require => Package['oracle-instantclient'],
   } 
 
   # Export your default TNS directory 
   file { "/etc/oracle/env.sh": 
-    content => "export TNS_ADMIN=/etc/oracle\n"
+    content => "export TNS_ADMIN=/etc/oracle\n",
+    require => Package['oracle-instantclient'],
   } 
   
   # Create a symlink for this file in /etc/profile.d 
