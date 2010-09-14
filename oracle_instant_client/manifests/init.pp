@@ -1,5 +1,20 @@
-# Purpose: deploy oracle instant client on RHEL
-
+# Class: oracle_instant_client
+#
+# Class installs the Oracle instantclient, including the ldconfig setup.
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Installs package, sets up /etc/oracle, runs ldconfig
+#
+# Requires:
+#   - Custom package oracle-instantclient to be in an available package repo
+#      > See http://github.com/stahnma/stahnkage-srpms for more information
+#
+# Sample Usage:
+#   include oracle_instant_client
+#
 class oracle_instant_client {
   # Note that oracle-instantclient is a site-specifc package.
   # We built a package that requires other oracle-instantclient-* packages
