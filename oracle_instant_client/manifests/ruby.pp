@@ -13,9 +13,11 @@
 #
 # Sample usage:
 #   include 'oracle_instant_client::ruby'
+#
 
 
 class oracle_instant_client::ruby { 
+  include ::oracle_instant_client
   package { "rubygem-oci8-doc": 
    ensure => installed,
    require => Class['oracle_instant_client'],
