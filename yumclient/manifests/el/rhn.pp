@@ -1,6 +1,4 @@
 class yumclient::el::rhn { 
-  notice("RHN should be configured and setup.")
-  # Also configure the default PKI 
   File {
      owner => 'root',
      group => 'root',
@@ -12,7 +10,7 @@ class yumclient::el::rhn {
     source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-release-$lsbmajdistrelease",
   }
 
- file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta":
+  file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta":
     ensure => present,
     source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-beta-$lsbmajdistrelease", 
   }
@@ -27,7 +25,7 @@ class yumclient::el::rhn {
     source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-auxiliary", 
   }
  
- file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former":
+  file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former":
     ensure => present,
     source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-former", 
   }
@@ -53,10 +51,9 @@ class yumclient::el::rhn {
   #   path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former",
   #}
 
-  
-  
- 
-
-
+  # Register with RHN
+  #  the only thing I plan to do here is notify you if the system
+  #   is not currently registered with RHN...maybe
+   
 
 }
