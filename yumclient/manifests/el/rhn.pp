@@ -9,12 +9,12 @@ class yumclient::el::rhn {
 
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-release-${operatingsystemversion}", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-release-$lsbmajdistrelease",
   }
 
  file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-beta-${operatingsystemversion}", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-beta-$lsbmajdistrelease", 
   }
 
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-rhx":
@@ -32,11 +32,11 @@ class yumclient::el::rhn {
     source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-former", 
   }
   
-  yumclient::rpm_gpg_key{ "redhat-release-$operatingsystemversion":
+  yumclient::rpm_gpg_key{ "redhat-release-$lsbmajdistrelease":
      path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release",
   }
 
-  yumclient::rpm_gpg_key{ "redhat-beta-$operatingsystemversion":
+  yumclient::rpm_gpg_key{ "redhat-beta-$lsbmajdisrelease":
      path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta",
   }
 

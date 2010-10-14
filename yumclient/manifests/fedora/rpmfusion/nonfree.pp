@@ -92,9 +92,9 @@ class yumclient::fedora::rpmfusion::nonfree {
 
  
   file { 'nonfree-key':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     ensure => present,
-    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    source => "puppet:///modules/rpmfusion/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     owner => root,
     group => root,
     mode => 644,
@@ -102,36 +102,36 @@ class yumclient::fedora::rpmfusion::nonfree {
 
   file { 'RPM-GPG-KEY-rpmfusion-nonfree-fedora':
     path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora",
-    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     require => File['nonfree-key']
   }
 
   file { 'RPM-GPG-KEY-rpmfusion-nonfree-fedora-3-i386':
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-i386",
-    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-i386",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     require => File['nonfree-key']
   }
 
-  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc":
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc",
-    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-ppc":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-ppc",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     require => File['nonfree-key']
   }
 
-  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc64":
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-ppc64",
-    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-ppc64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-ppc64",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     require => File['nonfree-key']
   }
 
-  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-x86_64":
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-x86_64",
-    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-x86_64":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-x86_64",
+    ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
     require => File['nonfree-key']
   }
 
-  yumclient::rpm_gpg_key{ "rpmfusion-nonfree-${operatingsystemrelease}":
-    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
+  yumclient::rpm_gpg_key{ "rpmfusion-nonfree-${lsbmajdistrelease}":
+    path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${lsbmajdistrelease}-primary",
   }
 
 }
