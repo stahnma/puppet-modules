@@ -1,8 +1,11 @@
 
 
 class yumclient { 
-  # Be sure to set this if you need it 
-  $proxy = "_none_"
+  # Be sure to set this if you need it. 
+  # Setting to 'absent' will fall back to the yum.conf
+  # Setting to a value will be used for all yum-repos currently 
+
+  $proxy = 'absent'
   
   case $operatingsystem { 
     fedora:  { include 'yumclient::fedora' }
