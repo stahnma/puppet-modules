@@ -1,3 +1,17 @@
+# Class yumclient::fedora::rpmfusion::free
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Setup the free repo form rpmfusion
+#
+# Reqiures:
+#   None
+#
+# Sample Usage:
+#  include yumclient::fedora::rpmfusion::free
+#
 class yumclient::fedora::rpmfusion::free { 
   # rpmfusion-free repos
   yumrepo { 'rpmfusion-free':

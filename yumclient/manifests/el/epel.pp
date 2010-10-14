@@ -1,3 +1,17 @@
+# Class yumclient::el::epel
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Configure the proper repositories and import GPG keys
+#
+# Reqiures:
+#   None
+#
+# Sample Usage:
+#  include yumclient::el::epel
+#
 class yumclient::el::epel { 
 
   yumrepo { "epel-testing":

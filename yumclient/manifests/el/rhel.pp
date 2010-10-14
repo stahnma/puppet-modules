@@ -1,3 +1,21 @@
+# Class yumclient::el::rhel
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Import GPG keys
+#
+# Reqiures:
+#   None
+#
+# Issues:
+#   This class makes an assumption that you are registered with RHN or 
+#   a Satellite already. It only imports GPG keys more or less.
+#
+# Sample Usage:
+#  include yumclient::el::rhel
+#
 class yumclient::el::rhn { 
   File {
      owner => 'root',
@@ -50,10 +68,5 @@ class yumclient::el::rhn {
   #yumclient::rpm_gpg_key{ "redhat-former":
   #   path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former",
   #}
-
-  # Register with RHN
-  #  the only thing I plan to do here is notify you if the system
-  #   is not currently registered with RHN...maybe
-   
 
 }

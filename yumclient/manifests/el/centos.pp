@@ -1,3 +1,17 @@
+# Class yumclient::el::centos
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Configure the proper repositories and import GPG keys
+#
+# Reqiures:
+#   None
+#
+# Sample Usage:
+#  include yumclient::el::centos
+#
 class yumclient::el::centos { 
 
   yumrepo { 'base':

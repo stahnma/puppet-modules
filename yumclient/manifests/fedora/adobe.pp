@@ -1,3 +1,20 @@
+# Class yumclient::fedora::adobe
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Setup the adobe repo (flash/reader) for linux
+#
+# Reqiures:
+#   None
+# 
+# Issues:
+#   Adobe only offers i386 repo at this time.
+#
+# Sample Usage:
+#  include yumclient::fedora::adobe
+#
 class yumclient::fedora::adobe { 
 
   yumrepo { 'adobe':

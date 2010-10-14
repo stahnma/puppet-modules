@@ -1,3 +1,17 @@
+# Class yumclient::fedora::fedora
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Setup Fedora primary repos and import GPG keys
+#
+# Reqiures:
+#   None
+#
+# Sample Usage:
+#  include yumclient::fedora
+#
 class yumclient::fedora::fedora { 
 
   yumrepo { 'fedora':

@@ -1,8 +1,21 @@
-
-
+# Class yumclient::fedora::rpmfusion::nonfree
+# 
+# Parameters:
+#   None
+#
+# Actions:
+#   Setup the nonfree repo form rpmfusion
+#
+# Reqiures:
+#   yumclient::fedora::rpmfusion::free
+#
+# Sample Usage:
+#  include yumclient::fedora::rpmfusion::nonfree
+#
 class yumclient::fedora::rpmfusion::nonfree { 
+  include 'yumclient::fedora::rpmfusion::free'
+  
   # Basic rpmfusion-nonfree
-  #
   yumrepo { 'rpmfusion-nonfree':
     enabled => '1',
     gpgcheck => '1',
@@ -11,6 +24,7 @@ class yumclient::fedora::rpmfusion::nonfree {
     descr => 'RPM Fusion for Fedora $releasever - Nonfree',
     mirrorlist => 'http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-$releasever&arch=$basearch',
     proxy => $proxy,
+    require => Class['yumclient::fedora::rpmfusion::free'],
   }
 
   yumrepo { 'rpmfusion-nonfree-debuginfo':
