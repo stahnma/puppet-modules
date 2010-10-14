@@ -16,7 +16,7 @@
 # Sample Usage:
 #  include yumclient::el::rhel
 #
-class yumclient::el::rhn { 
+class yumclient::el::rhel { 
   File {
      owner => 'root',
      group => 'root',
