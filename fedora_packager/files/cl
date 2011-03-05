@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dt=` date +"%a %b %d %Y"`
+echo "* $dt <stahnma@fedoraproject.org> - "
+
