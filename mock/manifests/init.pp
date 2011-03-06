@@ -9,7 +9,7 @@ class mock {
     group => 'stahnma',
     mode => 755,
     ensure => directory,
-    require => Group['stahnma'],
+    require => [ Group['stahnma'], User['stahnma'] ],
     
   }
 
@@ -21,7 +21,7 @@ class mock {
     shell => "/bin/bash",
     gid => "13802",
     groups =>  [ "stahnma", "mock", "wheel" ],
-    require => File['/home/stahnma'],
+    #require => File['/home/stahnma'],
   }
 
   @group { "mock": 
@@ -32,6 +32,7 @@ class mock {
     ensure => present, 
     gid => 13802,
   }
-  
-  realize(User[stahnma], Group[mock], Group[stahnma], File['/home/stahnma'])
+  realize(Group[stahnma])  
+  realize(User[stahnma])
+  realize(Group[mock], File['/home/stahnma'])
 }
