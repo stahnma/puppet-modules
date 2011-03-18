@@ -1,0 +1,29 @@
+#! /bin/bash
+# This file is puppet managed 
+
+set -e
+
+[ -x /usr/bin/updatedb.mlocate ] || exit 0
+
+##
+
+LOCKFILE="/var/lib/mlocate/daily.lock"
+
+trap "rm -f $LOCKFILE" EXIT
+
+if [ -e "$LOCKFILE" ]; then
+    echo >&2 "Warning: $LOCKFILE present, not running today."
+    exit 1
+else
+    touch "$LOCKFILE"
+fi
+
+##
+
+# See ionice(1)
+if [ -x /usr/bin/ionice ] &&
+    /usr/bin/ionice -c3 true 2>/dev/null; then
+    IONICE="/usr/bin/ionice -c3"
+fi
+
+$IONICE /usr/bin/updatedb.mlocate
