@@ -5,4 +5,16 @@ class virtualization {
   package { $pkgs: 
     ensure => installed,
   }
+
+  service { "libvirtd": 
+    ensure => running,
+    enable => true,
+    require => Package[$pkgs],
+  }
+
+  service { "libvirt-guests": 
+    ensure => running,
+    enable => true,
+    require => Package[$pkgs],
+  }
 }
