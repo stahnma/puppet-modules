@@ -97,7 +97,7 @@ class rpmfusion::nonfree {
     require => File['nonfree-key']
   }
 
-  file { 'RPM-GPG-KEY-rpmfusion-nonfree-fedora-3-i386':
+  file { "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-i386":
     path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-i386",
     ensure => "RPM-GPG-KEY-rpmfusion-nonfree-fedora-${operatingsystemrelease}-primary",
     require => File['nonfree-key']
