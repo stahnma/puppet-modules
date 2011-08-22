@@ -48,14 +48,14 @@ end
 desc "Run puppet in noop mode and check for syntax errors."
 task :validate do
    Dir['manifests/**/*.pp'].each do |path|
-     sh   "puppet --noop --parseonly #{path}"
+     sh   "puppet parser validate #{path}"
    end
 end
 
 desc "Run puppet locally to test the current module using the tests/test.pp file."
 task :test => :validate do 
   #puts "FACTERLIB=#{ENV['FACTERLIB']}"
-   sh   "puppet #{module_dir} --verbose tests/test.pp"
+   sh   "puppet apply #{module_dir} --verbose tests/test.pp"
 end
 
 task :do => :validate do
