@@ -1,6 +1,8 @@
 Purpose:  Install the $everyWherePackages to all systems
         Also provide variables for use in other classes/manifests
 
+This is kind of a crappy module. I don't really like it.  It's not purpose-driven enough.
+
 <example>
 node willow {
    package { $serverPkgs: ensure => installed }
