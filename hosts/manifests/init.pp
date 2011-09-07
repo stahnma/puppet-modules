@@ -1,7 +1,7 @@
 # This class just sets up /etc/hosts
 # Class: applications:lssm
-# Author: Michael Stahnke 
-# Copyright: (c) 2010
+# Author: Michael Stahnke
+# Copyright: (c) 2010, 2011
 # License: BSD
 #
 # Parameters:
@@ -19,8 +19,8 @@
 # Sample Usage:
 #
 #  include 'hosts'
-# 
-class hosts { 
+#
+class hosts {
   file { "/etc/hosts":
     ensure => present,
   }
@@ -42,10 +42,8 @@ class hosts {
     ensure => 'present',
     target => '/etc/hosts'
   }
-  host { 'puppet.stahnkage.com':
-    ip => '192.168.1.1.109',
-    host_aliases => ['puppet', 'www', 'ram' ],
-    ensure => 'present',
-    target => '/etc/hosts'
+
+  resources { 'host':
+     purge => true
   }
-} 
+}
