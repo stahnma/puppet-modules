@@ -43,7 +43,7 @@ class cobbler {
   exec { "getloaders":
     command => 'cobbler get-loaders',
     path => [ "/usr/bin", "/usr/sbin", "/bin", "/sbin" ] ,
-    unless => " test -f /var/lib/cobbler/loaders/yaboot ",
+    unless => "test -f /var/lib/cobbler/loaders/yaboot ",
     require => Package[$cobbler_packages],
   }
      
@@ -78,6 +78,16 @@ class cobbler {
     destination => "0.0.0.0",
     jump => "ACCEPT",
     require => Package[$cobbler_packages],
+  }
+
+  file { "/etc/cobbler/modules.conf":
+    owner => 'root',
+    group => 'root',
+    mode => 0774,
+    ensure => present,
+    content => template('cobbler/modules.conf.erb'),
+    require => Package[$cobbler_packages],
+    notify => Service['cobblerd'],
   }
 
 }
