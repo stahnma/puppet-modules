@@ -1,4 +1,4 @@
 $ns1="192.168.1.109"
-$ns2="192.168.1.1"
-$searchpath="stahnkage.com websages.com opsplatform.org"
+$ns2="8.8.8.8"
+$searchpath="stahnkage.com websages.com"
 include 'resolv'
