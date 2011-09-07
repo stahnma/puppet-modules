@@ -80,10 +80,5 @@ class cobbler {
     require => Package[$cobbler_packages],
   }
 
-
-   
-    
-
-
-} 
+}
 
