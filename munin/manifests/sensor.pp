@@ -18,4 +18,5 @@ class munin::sensor {
       ensure => running,
       require => Package[$nm],
     }
+
 }

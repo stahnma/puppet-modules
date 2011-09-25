@@ -17,7 +17,7 @@ class munin::node {
     service { "munin-node":
       enable => true,
       ensure => running,
-      require => Package['munin-node'],
+      require => [ Package['munin-node'], File['acpi-plugin'] ] ,
     }
 
     if $has_yum == "true" {
@@ -45,5 +45,15 @@ class munin::node {
      mode => 0644,
      content => template('munin/munin-node.conf.erb'),
    }
+
+   file { "acpi-plugin":
+      path =>  '/etc/munin/plugins/acpi',
+      ensure => '/usr/share/munin/plugins/acpi',
+      require => Package['munin-node'],
+      owner => 'root',
+      group => 'root',
+      mode => '777',
+   }
+
 }
 
