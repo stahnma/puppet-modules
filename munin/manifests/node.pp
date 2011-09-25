@@ -7,7 +7,7 @@ class munin::node {
       group => 'munin',
       mode  => 0664,
       notify => Service['munin-node'],
-      require => Package['munin-node'],
+      require => [ Package['munin-node'], Class[munin::sensor] ],
     }
 
     package { "munin-node":
