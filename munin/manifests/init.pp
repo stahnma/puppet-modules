@@ -5,5 +5,6 @@ class munin {
     include munin::server
   }
   include munin::node
+  include munin::node::plugins
   include munin::sensor
 }
