@@ -43,5 +43,13 @@ class munin::node {
     #  require =>  File['/var/lib/munin/plugin-state/iostat-ios.state'],
     #  notify => Service['munin-node'],
     #}
+
+    file { '/etc/munin/munin-node.conf':
+      ensure => present,
+      owner => 'root',
+      group => 'root',
+      mode => 0644,
+      content => template('munin/munin-node.conf.erb'),
+    }
 }
 

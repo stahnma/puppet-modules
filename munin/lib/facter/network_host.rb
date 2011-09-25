@@ -1,4 +1,5 @@
 
+# These facts are horrible and will be replaced with a Puppet Lookup function eventually
 
 Facter.add(:network_master) do
   fqdn = Facter.value(:fqdn)
@@ -9,4 +10,9 @@ Facter.add(:network_master) do
        "false"
     end
   end
+end
+
+
+Facter.add(:network_master_ip) do 
+  setcode { '192.168.1.102' }
 end
