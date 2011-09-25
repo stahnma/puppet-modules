@@ -1,12 +1,21 @@
 
 class munin::sensor {
-    package { "lm-sensors":
+
+    $nm = $operatingsystem ? {
+      'CentOS' => 'lm_sensors',
+      'Ubuntu' => 'lm-sensors',
+      'RedHat' => 'lm_sensors',
+      'Debian' => 'lm-sensors',
+       default => 'lm_sensors',
+      }
+
+    package { $nm:
       ensure => present,
     }
 
-    service { "lm-sensors":
+    service { $nm:
       enable => true,
       ensure => running,
-      require => Package['lm-sensors'],
+      require => Package[$nm],
     }
 }
