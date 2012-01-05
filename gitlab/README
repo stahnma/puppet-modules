@@ -1,0 +1,7 @@
+This really doesn't work yet.
+
+
+On my systems, where I enable yum.puppetlabs.com, you get all sorts of odd results, as most of those want a ruby that is 1.8.
+
+
+I probably should fix that.
