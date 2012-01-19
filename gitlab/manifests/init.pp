@@ -1,6 +1,6 @@
 class gitlab {
 
-	$gitlabpkgs = [ 'redis', 'gitolite', 'python', 'python-devel', 'sendmail', 'libicu-devel', 'python-pip', 'make', 'gcc', 'autoconf', 'gcc-c++', 'sqlite-devel' ]
+	$gitlabpkgs = [ 'redis', 'gitolite', 'python', 'python-devel', 'sendmail', 'libicu-devel', 'python-pip', 'make', 'gcc', 'autoconf', 'gcc-c++', 'sqlite-devel', 'patch' ]
 
 	$rubies = [ 'ruby', 'rubygems', 'rubygem-rake','ruby-irb', 'ruby-devel' , 'rubygems-devel', 'libxslt-devel', 'libxml2-devel'  ]
 
@@ -38,7 +38,7 @@ class gitlab {
 		path      => "/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin",
 		command   => "bundle install  --without development test",
 		logoutput => true,
-		require   => [ Package[$gitlabpkgs], File['/srv'], Package['bundler'], Exec['gitlab-install']  ], 
+		require   => [ Package[$gitlabpkgs], File['/srv'], Package['bundler'], Exec['gitlab-install'], Exec['apply-bundler-patch']  ], 
 	}
 
 	exec { "bundle-db-setup":
@@ -48,5 +48,25 @@ class gitlab {
 		logoutput => true,
 		require   => [ Package[$gitlabpkgs], File['/srv'], Package['bundler'], Exec['gitlab-install'] , Exec['bundle-install']  ], 
 	}
+
+	file { "/srv/gitlab/bundler-patch"
+	  ensure => present,
+		source  => 'puppet:///modules/gitlab/0001-Add-support-for-binary-extensions-in-dedicated-folde.patch',
+		owner   => root,
+		group   => root,
+		mode    => 0600,
+	}
+	
+	exec { "apply-bundler-patch":
+		unless    => "[ -d /srv/gitlabhq ]",
+		cwd       => "/usr/local/share/gems/gems/bundler-1.0.21",
+		path      => "/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin",
+		command   => "patch -p1 < /srv/gitlab/bundler-patch",
+		logoutput => true,
+		require   => [ Package[$gitlabpkgs], File['/srv'], Package['bundler'] ], 
+
+	}
+
+	
 }
 
