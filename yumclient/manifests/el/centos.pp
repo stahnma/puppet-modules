@@ -12,18 +12,18 @@
 # Sample Usage:
 #  include yumclient::el::centos
 #
-class yumclient::el::centos { 
+class yumclient::el::centos {
 
   yumrepo { 'base':
     gpgcheck => '1',
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$lsbmajdistrelease", 
-    descr => 'CentOS-$releasever - Base', 
-    mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os' 
+    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$lsbmajdistrelease",
+    descr => 'CentOS-$releasever - Base',
+    mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os'
   }
 
   yumrepo { 'updates':
-    gpgcheck => '1', 
-    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$lsbmajdistrelease", 
+    gpgcheck => '1',
+    gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-$lsbmajdistrelease",
     descr => 'CentOS-$releasever - Updates',
     mirrorlist => 'http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates'
   }

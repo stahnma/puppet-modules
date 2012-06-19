@@ -1,5 +1,5 @@
 # Class yumclient::el::rhel
-# 
+#
 # Parameters:
 #   None
 #
@@ -10,13 +10,13 @@
 #   None
 #
 # Issues:
-#   This class makes an assumption that you are registered with RHN or 
+#   This class makes an assumption that you are registered with RHN or
 #   a Satellite already. It only imports GPG keys more or less.
 #
 # Sample Usage:
 #  include yumclient::el::rhel
 #
-class yumclient::el::rhel { 
+class yumclient::el::rhel {
   File {
      owner => 'root',
      group => 'root',
@@ -30,24 +30,24 @@ class yumclient::el::rhel {
 
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-beta-$lsbmajdistrelease", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-beta-$lsbmajdistrelease",
   }
 
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-rhx":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-rhx", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-rhx",
   }
 
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-auxiliary":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-auxiliary", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-auxiliary",
   }
- 
+
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former":
     ensure => present,
-    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-former", 
+    source => "puppet:///modules/yumclient/RPM-GPG-KEY-redhat-former",
   }
-  
+
   yumclient::rpm_gpg_key{ "redhat-release-$lsbmajdistrelease":
      path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release",
   }
@@ -68,5 +68,4 @@ class yumclient::el::rhel {
   #yumclient::rpm_gpg_key{ "redhat-former":
   #   path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-former",
   #}
-
 }

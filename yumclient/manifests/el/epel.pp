@@ -1,5 +1,5 @@
 # Class yumclient::el::epel
-# 
+#
 # Parameters:
 #   None
 #
@@ -12,7 +12,7 @@
 # Sample Usage:
 #  include yumclient::el::epel
 #
-class yumclient::el::epel { 
+class yumclient::el::epel {
 
   yumrepo { "epel-testing":
     baseurl => "http://download.fedora.redhat.com/pub/epel/testing/$lsbmajdistrelease/$architecture",
@@ -73,7 +73,7 @@ class yumclient::el::epel {
     gpgkey => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$lsbmajdistrelease",
     descr => "Extra Packages for Enterprise Linux $lsbmajdistrelease - $architecture - Source"
   }
-  
+
   file { "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$lsbmajdistrelease":
     ensure => present,
     owner => 'root',
@@ -83,7 +83,7 @@ class yumclient::el::epel {
   }
 
    yumclient::rpm_gpg_key{ "EPEL-$lsbmajdistrelease":
-      path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$lsbmajdistrelease" 
-   } 
-  
+      path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$lsbmajdistrelease"
+   }
+
 }
